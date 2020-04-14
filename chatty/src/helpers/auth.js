@@ -1,11 +1,18 @@
 import { auth } from '../services/firebase';
 
-const signup = (email, password) => {
+export function signup(email, password) {
 	return auth().createUserWithEmailAndPassword(email, password);
-};
+}
 
-const signin = (email, password) => {
+export function signin(email, password) {
 	return auth().signInWithEmailAndPassword(email, password);
-};
+}
+export function signInWithGithub() {
+	const provider = new auth.GithubAuthProvider();
+	return auth().signInWithPopup(provider);
+}
 
-export default { signup, signin };
+export function signInWithGoogle() {
+	const provider = new auth.GoogleAuthProvider();
+	return auth().signInWithPopup(provider);
+}
